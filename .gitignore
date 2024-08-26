@@ -167,3 +167,6 @@ site/
 
 # Node (in case you use any Node.js tools)
 node_modules/
+
+# Python scripts cache
+scripts/__pycache__/

@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Backend API for the AI Agent Framework"
 authors = ["Rakesh Gangwar <rakesh@superjackfruit.com>"]
 
+[tool.poetry.scripts]
+dev = "scripts.run_servers:main"
+
 [tool.poetry.dependencies]
 python = "^3.12"
 fastapi = "^0.112.2"
