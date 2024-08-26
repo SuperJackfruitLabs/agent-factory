@@ -10,6 +10,8 @@ services:
       - DATABASE_URL=postgresql://user:password@db:5432/ai_agent_db
     depends_on:
       - db
+    networks:
+      - app-network
 
   db:
     image: postgres:13
@@ -19,14 +21,35 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=ai_agent_db
+    networks:
+      - app-network
 
-  test:
-    build: .
-    command: poetry run python scripts/test_db_connection.py
-    volumes:
-      - .:/app
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://web:8000
     depends_on:
-      - db
+      - web
+    networks:
+      - app-network
+
+  # test:
+  #   build: .
+  #   command: poetry run python scripts/test_db_connection.py
+  #   volumes:
+  #     - .:/app
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   postgres_data:
