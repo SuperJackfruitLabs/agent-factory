@@ -16,6 +16,8 @@ AI Agent Framework is a scalable and flexible system for building AI-enabled ass
 
 - Python 3.12+
 - Poetry
+- Docker and Docker Compose (for running the full stack)
+- Node.js and npm (for frontend development)
 
 ### Installation
 
@@ -25,8 +27,9 @@ AI Agent Framework is a scalable and flexible system for building AI-enabled ass
    cd agent-factory
    ```
 
-2. Install dependencies:
+2. Install backend dependencies:
    ```
+   cd backend
    poetry install
    ```
 
@@ -35,11 +38,29 @@ AI Agent Framework is a scalable and flexible system for building AI-enabled ass
    poetry run pre-commit install
    ```
 
+4. Install frontend dependencies:
+   ```
+   cd ../frontend
+   npm install
+   ```
+
 ### Running the Application
 
-To run both the FastAPI server and MkDocs documentation server simultaneously:
+To run the full stack using Docker Compose:
 
 ```
+docker-compose up --build
+```
+
+This will start:
+- FastAPI backend server at `http://localhost:8000`
+- PostgreSQL database
+- Next.js frontend at `http://localhost:3000`
+
+For backend development, you can run the FastAPI server and MkDocs documentation server simultaneously:
+
+```
+cd backend
 poetry run dev
 ```
 
@@ -47,17 +68,27 @@ This will start:
 - FastAPI server at `http://localhost:8000`
 - MkDocs documentation server at `http://localhost:8001`
 
+For frontend development:
+
+```
+cd frontend
+npm run dev
+```
+
+This will start the Next.js development server at `http://localhost:3000`.
+
 ## Development
 
-- Run tests: `poetry run pytest`
-- Format code: `poetry run black .`
-- Lint code: `poetry run flake8`
+- Run backend tests: `cd backend && poetry run pytest`
+- Format backend code: `cd backend && poetry run black .`
+- Lint backend code: `cd backend && poetry run flake8`
 
 ## Documentation
 
 Our documentation is built using MkDocs. You can view it locally by running:
 
 ```
+cd backend
 poetry run mkdocs serve
 ```
 
