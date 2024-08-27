@@ -85,11 +85,15 @@ This will start the Next.js development server at `http://localhost:3000`.
 
 ## Documentation
 
-Our documentation is built using MkDocs. You can view it locally by running:
+Our documentation is built using MkDocs and served in the Docker environment. You can view it at `http://localhost:8001` when running the full stack.
+
+For local documentation development:
 
 ```
-cd backend
-poetry run mkdocs serve
+bash
+cd docs
+pip install -r requirements.txt
+mkdocs serve
 ```
 
 Then visit `http://localhost:8000` in your browser.
