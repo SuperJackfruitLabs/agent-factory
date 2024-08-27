@@ -7,8 +7,8 @@ We're excited that you're interested in contributing to the AI Agent Framework! 
 1. Fork the repository on GitHub.
 2. Clone your fork locally:
    ```
-   git clone https://github.com/your-username/agent-backend.git
-   cd agent-backend
+   git clone https://github.com/your-username/agent-factory.git
+   cd agent-factory
    ```
 3. Set up your development environment as described in the README.md.
 
