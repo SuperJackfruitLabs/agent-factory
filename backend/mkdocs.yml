@@ -16,8 +16,8 @@ theme:
       primary: teal
       accent: lime
 
-repo_name: Super-Jackfruit-Labs/agent-backend
-repo_url: https://github.com/Super-Jackfruit-Labs/agent-backend
+repo_name: Super-Jackfruit-Labs/agent-factory
+repo_url: https://github.com/Super-Jackfruit-Labs/agent-factory
 
 nav:
   - Home: index.md
