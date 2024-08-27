@@ -1,4 +1,5 @@
 site_name: AI Agent Framework
+docs_dir: source
 theme:
   name: material
   features:

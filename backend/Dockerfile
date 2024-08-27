@@ -4,9 +4,13 @@ WORKDIR /app
 
 COPY ./pyproject.toml ./poetry.lock* /app/
 
-RUN pip install poetry && \
-    poetry config virtualenvs.create false && \
-    poetry install --no-dev
+RUN pip install --upgrade pip && \
+    pip install poetry && \
+    poetry config virtualenvs.create false
+
+RUN poetry lock --no-update
+
+RUN poetry install --no-dev
 
 COPY . /app
 

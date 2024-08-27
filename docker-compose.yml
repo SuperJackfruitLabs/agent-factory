@@ -1,13 +1,14 @@
 services:
   web:
     build: ./backend
+    container_name: server
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     volumes:
-      - ./backend:/app
+      - ./backend/app:/app/app
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/ai_agent_db
+      - DATABASE_URL=${DATABASE_URL:-postgresql://user:password@db:5432/ai_agent_db}
     depends_on:
       - db
     networks:
@@ -15,35 +16,45 @@ services:
 
   db:
     image: postgres:13
+    container_name: database
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=ai_agent_db
+      - POSTGRES_USER=${POSTGRES_USER:-user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-password}
+      - POSTGRES_DB=${POSTGRES_DB:-ai_agent_db}
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-user} -d ${POSTGRES_DB:-ai_agent_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    container_name: studio
     ports:
       - "3000:3000"
     environment:
       - NEXT_PUBLIC_API_URL=http://web:8000
     depends_on:
       - web
-
-  test:
-    build: ./backend
-    command: poetry run python scripts/test_db_connection.py
-    volumes:
-      - ./backend:/app
-    depends_on:
-      - db
     networks:
       - app-network
+
+  docs:
+      build: ./docs
+      container_name: documentation
+      command: mkdocs serve -a 0.0.0.0:8001
+      volumes:
+        - ./docs:/docs
+      ports:
+        - "8001:8001"
+      networks:
+        - app-network
 
 networks:
   app-network:
