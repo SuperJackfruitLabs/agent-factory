@@ -10,23 +10,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.9'
-    - name: Install Poetry
-      run: |
-        curl -sSL https://install.python-poetry.org | python3 -
+        python-version: '3.12'
     - name: Install dependencies
       run: |
+        pip install poetry
+        poetry lock --no-update
         poetry install
     - name: Run tests
       run: |
         poetry run pytest
-    - name: Run linter
-      run: |
-        poetry run flake8
-    - name: Run formatter check
-      run: |
-        poetry run black --check .

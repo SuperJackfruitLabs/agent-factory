@@ -18,7 +18,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to the AI Agent Framework API"}
+    return {"message": "Welcome to the AI Agent Framework"}
 
 
 @app.get("/health")
