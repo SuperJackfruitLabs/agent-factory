@@ -23,7 +23,7 @@ AI Agent Framework is a scalable and flexible system for building AI-enabled ass
 
 1. Clone the repository:
    ```
-   git clone https://github.com/Super-Jackfruit-Labs/agent-factory.git
+   git clone https://github.com/SuperJackfruitLabs/agent-factory.git
    cd agent-factory
    ```
 
