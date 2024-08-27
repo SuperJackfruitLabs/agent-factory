@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.routers import user_routes
 
 app = FastAPI(
     title="AI Agent Framework API",
@@ -14,6 +15,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(user_routes.router, prefix="/api/users", tags=["users"])
 
 
 @app.get("/")
