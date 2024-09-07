@@ -170,3 +170,10 @@ node_modules/
 
 # Python scripts cache
 scripts/__pycache__/
+
+#Supabase stuff
+volumes/db/data
+volumes/storage
+.env
+test.http
+docker-compose.override.yml
