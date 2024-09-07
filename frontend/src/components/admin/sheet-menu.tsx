@@ -27,7 +27,7 @@ export function SheetMenu() {
           >
             <Link href="/dashboard" className="flex items-center gap-2">
               <Bot className="w-6 h-6 mr-1" />
-              <h1 className="font-bold text-lg">Agent Studio</h1>
+              <h1 className="font-bold text-lg">Agent Factory</h1>
             </Link>
           </Button>
         </SheetHeader>
