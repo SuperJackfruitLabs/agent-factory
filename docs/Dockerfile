@@ -11,6 +11,6 @@ USER docuser
 
 COPY . .
 
-EXPOSE 8001
+EXPOSE 3456
 
-CMD ["mkdocs", "serve", "--dev-addr=0.0.0.0:8001"]
+CMD ["mkdocs", "serve", "--dev-addr=0.0.0.0:3456"]

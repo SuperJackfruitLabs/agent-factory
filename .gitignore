@@ -155,7 +155,6 @@ Thumbs.db
 *.sqlite
 
 # Logs
-logs
 *.log
 
 # Temporary files
