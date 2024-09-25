@@ -26,6 +26,11 @@ async def health_check():
     return {"status": "healthy"}
 
 
+@app.get("/test")
+async def test():
+    return {"status": "test"}
+
+
 if __name__ == "__main__":
     import uvicorn
 
